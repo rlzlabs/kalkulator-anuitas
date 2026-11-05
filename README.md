@@ -1,4 +1,3 @@
-# kalkulator-anuitas
 <!DOCTYPE html>
 <html lang="id">
 <head>
@@ -13,141 +12,209 @@
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
 
-        /* Neumorphism Background */
+        /* Tema Galaxy / Claude Dark Mode */
         body {
-            background-color: #e0e5ec;
-            color: #4d5b6b;
-            padding: 30px 20px;
+            background-color: #0a0a0f;
+            /* Pola Bintang di Latar Belakang */
+            background-image: 
+                radial-gradient(1px 1px at 20px 30px, rgba(255, 255, 255, 0.8) 100%, transparent),
+                radial-gradient(1.5px 1.5px at 80px 70px, rgba(255, 255, 255, 0.9) 100%, transparent),
+                radial-gradient(1px 1px at 150px 140px, rgba(255, 255, 255, 0.6) 100%, transparent),
+                radial-gradient(2px 2px at 250px 90px, rgba(200, 220, 255, 0.9) 100%, transparent);
+            background-size: 300px 300px;
+            color: #e2e8f0;
+            padding: 40px 20px;
             min-height: 100vh;
             display: flex;
             justify-content: center;
+            position: relative;
+            z-index: 1;
+            overflow-x: hidden;
+        }
+
+        /* Efek Nebula (Cahaya kosmik ungu & biru di sudut) */
+        body::before {
+            content: "";
+            position: fixed;
+            top: -20%; left: -10%; width: 50vw; height: 50vw;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(110, 86, 207, 0.15) 0%, transparent 70%);
+            filter: blur(60px);
+            z-index: -1;
+        }
+        body::after {
+            content: "";
+            position: fixed;
+            bottom: -20%; right: -10%; width: 50vw; height: 50vw;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(56, 189, 248, 0.12) 0%, transparent 70%);
+            filter: blur(60px);
+            z-index: -1;
         }
 
         .container {
             max-width: 850px;
             width: 100%;
+            position: relative;
+            z-index: 2;
         }
 
         h1 {
             text-align: center;
-            margin-bottom: 30px;
-            color: #3182ce;
-            font-weight: 700;
-            letter-spacing: 1px;
-            text-shadow: 2px 2px 4px rgba(163,177,198,0.5), -2px -2px 4px rgba(255,255,255,0.8);
+            margin-bottom: 35px;
+            background: linear-gradient(135deg, #e0e7ff 0%, #a5b4fc 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-weight: 600;
+            letter-spacing: 2px;
+            font-size: 32px;
         }
 
-        /* 3D Extruded Card Effect */
-        .neu-card {
-            background-color: #e0e5ec;
+        /* Kaca Gelap (Dark Glassmorphism) */
+        .glass-card {
+            background: rgba(20, 20, 25, 0.6);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
             border-radius: 20px;
-            box-shadow: 9px 9px 16px rgba(163,177,198,0.6), 
-                       -9px -9px 16px rgba(255,255,255, 0.6);
-            padding: 30px;
+            padding: 35px;
             margin-bottom: 30px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.1);
         }
 
-        /* Biodata Text */
+        /* Teks Identitas */
         .identitas h2 {
-            color: #3182ce;
+            color: #c7d2fe;
             margin-bottom: 15px;
+            font-weight: 500;
+            font-size: 22px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            padding-bottom: 10px;
         }
-        .identitas p, .identitas li {
-            color: #4d5b6b;
-            margin-bottom: 10px;
+        .identitas p {
+            color: #94a3b8;
+            margin-bottom: 8px;
+            font-size: 15px;
+        }
+        .identitas strong {
+            color: #e2e8f0;
+            font-weight: 500;
         }
         .identitas ul {
-            list-style-position: inside;
-            margin-top: 10px;
+            list-style: none;
+            margin-top: 15px;
+        }
+        .identitas li {
+            color: #e2e8f0;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+        }
+        .identitas li::before {
+            content: "✦";
+            color: #818cf8;
+            font-size: 14px;
+            margin-right: 10px;
+            text-shadow: 0 0 10px rgba(129, 140, 248, 0.8);
         }
 
-        /* Form Inputs (3D Inset/Deboss Effect) */
+        /* Form Input */
         .input-group {
             margin-bottom: 25px;
         }
         .input-group label {
             display: block;
             margin-bottom: 10px;
+            font-size: 13px;
+            color: #94a3b8;
+            text-transform: uppercase;
+            letter-spacing: 1px;
             font-weight: 600;
-            font-size: 14px;
-            color: #64748b;
         }
         .input-group input {
             width: 100%;
             padding: 16px;
-            background-color: #e0e5ec;
-            border: none;
+            background: rgba(0, 0, 0, 0.4);
+            border: 1px solid rgba(255, 255, 255, 0.12);
             border-radius: 12px;
-            color: #2d3748;
+            color: #fff;
             font-size: 16px;
-            font-weight: 500;
-            box-shadow: inset 6px 6px 10px 0 rgba(163,177,198, 0.7), 
-                        inset -6px -6px 10px 0 rgba(255,255,255, 0.8);
+            transition: all 0.3s ease;
+        }
+        .input-group input:focus {
             outline: none;
+            border-color: #818cf8;
+            background: rgba(0, 0, 0, 0.6);
+            box-shadow: 0 0 0 3px rgba(129, 140, 248, 0.2);
         }
         .input-group input::placeholder {
-            color: #94a3b8;
+            color: #475569;
         }
 
-        /* 3D Button */
+        /* Tombol Elegan bercahaya */
         button {
             width: 100%;
             padding: 18px;
-            background-color: #e0e5ec;
-            color: #3182ce;
+            background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%);
+            color: #ffffff;
             border: none;
             border-radius: 12px;
             font-size: 16px;
-            font-weight: 700;
+            font-weight: 600;
             letter-spacing: 1px;
             cursor: pointer;
-            box-shadow: 6px 6px 10px 0 rgba(163,177,198, 0.7), 
-                       -6px -6px 10px 0 rgba(255,255,255, 0.8);
-            transition: all 0.2s ease-in-out;
+            box-shadow: 0 8px 25px rgba(99, 102, 241, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+            transition: all 0.3s ease;
             margin-top: 10px;
         }
-        /* Efek saat tombol ditekan (masuk ke dalam) */
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 30px rgba(99, 102, 241, 0.6), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+        }
         button:active {
-            box-shadow: inset 6px 6px 10px 0 rgba(163,177,198, 0.7), 
-                        inset -6px -6px 10px 0 rgba(255,255,255, 0.8);
-            color: #2b6cb0;
+            transform: translateY(1px);
         }
 
-        /* Result Area */
+        /* Area Hasil */
         .hidden {
             display: none;
         }
         .result-card h2 {
             text-align: center;
-            color: #3182ce;
+            color: #c7d2fe;
             margin-bottom: 25px;
+            font-weight: 500;
         }
         .table-responsive {
             overflow-x: auto;
-            border-radius: 12px;
-            box-shadow: inset 4px 4px 8px rgba(163,177,198, 0.5), 
-                        inset -4px -4px 8px rgba(255,255,255, 0.7);
-            padding: 10px;
         }
 
-        /* Table Design */
+        /* Desain Tabel Kosmik */
         table {
             width: 100%;
-            border-collapse: collapse;
+            border-collapse: separate;
+            border-spacing: 0;
             font-size: 14px;
         }
         th, td {
-            padding: 15px;
+            padding: 16px;
             text-align: right;
-            border-bottom: 1px solid rgba(163,177,198, 0.3);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
         }
         th:first-child, td:first-child {
             text-align: center;
         }
         th {
-            color: #3182ce;
-            font-weight: 700;
-            border-bottom: 2px solid rgba(163,177,198, 0.5);
+            color: #818cf8;
+            font-weight: 600;
+            text-transform: uppercase;
+            font-size: 12px;
+            letter-spacing: 1px;
+            background: rgba(0, 0, 0, 0.2);
+        }
+        /* Efek hover pada baris tabel */
+        tr:hover td {
+            background: rgba(255, 255, 255, 0.03);
         }
         tr:last-child td {
             border-bottom: none;
@@ -160,11 +227,11 @@
         <h1>KALKULATOR ANUITAS</h1>
 
         <!-- Bagian Identitas Kelompok 8 -->
-        <div class="neu-card identitas">
-            <h2>Tugas Akhir Semester 3</h2>
+        <div class="glass-card identitas">
+            <h2>Laporan Tugas Anuitas</h2>
             <p>Pelajaran: <strong>Matematika</strong></p>
             <p>Materi: <strong>Anuitas</strong></p>
-            <p>Kelas: <strong>XI-5</strong></p>
+            <p>Kelas: <strong>XI-3</strong></p>
             <p>Guru Pembimbing: <strong>Dewi Lestari, S.Pd.</strong></p>
             <br>
             <p><strong>Anggota Kelompok 8:</strong></p>
@@ -178,24 +245,24 @@
         </div>
 
         <!-- Form Input -->
-        <div class="neu-card">
+        <div class="glass-card">
             <div class="input-group">
-                <label>JUMLAH PINJAMAN / MODAL (Rp)</label>
+                <label>Jumlah Pinjaman / Modal (Rp)</label>
                 <input type="number" id="pinjaman" placeholder="Contoh: 10000000">
             </div>
             <div class="input-group">
-                <label>SUKU BUNGA PER BULAN (%)</label>
+                <label>Suku Bunga Per Bulan (%)</label>
                 <input type="number" id="bunga" placeholder="Contoh: 2">
             </div>
             <div class="input-group">
-                <label>TENOR / JANGKA WAKTU (Bulan)</label>
+                <label>Tenor / Jangka Waktu (Bulan)</label>
                 <input type="number" id="tenor" placeholder="Contoh: 12">
             </div>
             <button onclick="hitungAnuitas()">HITUNG ANUITAS</button>
         </div>
 
         <!-- Tabel Hasil -->
-        <div id="result-section" class="neu-card hidden">
+        <div id="result-section" class="glass-card hidden">
             <h2>Besar Anuitas: <span id="hasil-anuitas"></span></h2>
             <div class="table-responsive">
                 <table id="tabel-angsuran">
